@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sepalo</title>
+
+</head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+    aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <a class="navbar-brand marcado">
+      <img src="https://actibo.sepalo.es/wp-content/uploads/2022/01/sepalo.png" width="100" height="80" alt="">
+    </a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link">
+          <h1>Resúmenes de archivos CSV</h1>
+        </a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+
+      <button class="btn btn-success my-2 my-sm-0" type="submit" onClick="window.location.reload()">Recargar</button>
+    </form>
+  </div>
+</nav>
+
+<body>
+  <div class="cuadrado">
+
+    <div class="variants">
+      <div class='file'>
+        <label for='input-file'>
+          <i class="material-icons">cloud_queue
+          </i>Selecciona un documento .CSV
+        </label>
+        <input id='input-file' type="file" multiple (change)="changeListener($event)" />
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="card_center">
+    <div *ngFor="let file of files" class="card card-center2" style="width: 45rem;">
+      <img class="card-img-top"
+        src="https://img.freepik.com/vector-premium/pago-tarjeta-credito-traves-tpv-efectivo-pago-contacto-pagos-aplicacion-smartphone-recibo-transaccion-banca-linea-dinero-electronico-nfc_458444-824.jpg?w=2000"
+        alt="Card">
+      <div class="card-body">
+        <h2 class="card-title alineado">Nombre del Comercio: <h3>{{comercio}}</h3>
+        </h2>
+        <h2 class="card-title  alineado">Nombre del archivo: <h3>{{filename}}</h3>
+        </h2>
+        <h2 class="card-text  alineado">Numero de transacciones : <h3>{{transacciones}}</h3>
+        </h2>
+        <h2 class="card-text  alineado">Número de transacciones Aceptadas:<h3>{{transacciones_Aceptadas}}</h3>
+        </h2>
+        <h2 class="card-text  alineado">Porcentaje de transacciones Aceptadas:<h3>{{porcentaje}}%</h3>
+        </h2>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="card_center">
+    <div class="card-center2" *ngIf=" !show">
+      <button (click)=toggleDisplayDivIf() class="btn btn-success my-2 my-sm-0 "> Clic para ver el gráfico</button> <br><br>
+  </div>
+</div>
+
+    <div *ngIf=" !isShowDivIf">
+        <canvasjs-chart [options]="chartOptions" (chartInstance)="getChartInstance($event)"
+          [styles]="{ width: '100%', height: '500px' }"></canvasjs-chart>
+    </div>
+    <br><br>
+    <div *ngIf=" !isShowDivIf">
+      <canvasjs-chart [options]="chartOptions" (chartInstance)="getChartInstance($event)"
+        [styles]="{ width: '100%', height: '500px' }"></canvasjs-chart>
+    </div>
+    <br><br>
+
+
+</body>
+
+</html>
